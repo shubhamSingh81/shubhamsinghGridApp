@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
     return (
         <>
-            <nav className='navbar navbar-dark bg-dark navbar-expand-sm'>
-                <div className='container'>
-                    <Link to={'/user'} className="navbar-brand">
-                        <i className='fa fa-mobile text-warning' /><h1>Click Me TO See User Page</h1><span className='text-warning'>
+            <nav>
+                <div>
+                    <Link to={'/user'}>
+                        <i/><h1>Click Me TO See User Page</h1><span>
                         </span>
                     </Link>
                 </div>
