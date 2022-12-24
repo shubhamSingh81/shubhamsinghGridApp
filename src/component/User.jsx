@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { Grid, Button } from '@material-ui/core'
 import FormDialog from './Dialog';
 const initalValue = {firstName: "", lastName: "", email: "", phoneNumber: "", address: "" }
+const [searchKey, setSearchKey] = useState('');
 
 export const User = () => {
   const [tableData, setTableData] = useState(null);
@@ -46,6 +47,11 @@ export const User = () => {
       getUser()
       setFormData(initalValue)
     })
+  }
+  
+  const handleSearch = () => {
+    const filteredData = tableData.filter((value) => value.email === searchKey );
+    setTableData(filteredData)
   }
 
   const columns = [
@@ -91,6 +97,8 @@ export const User = () => {
       <Grid align="right">
         <Button variant="contained" color="primary" onClick={handleClickOpen}>Add New Record</Button>
       </Grid>  {""}
+      <input type="text"  placeholder="Search By Email" aria-label="Search" onChange={(e) => setSearchKey(e.target.value)} />
+      <Button type='search' color="secondary" onClick={handleSearch}>Search</Button>
       <FormDialog open={open} handleClose={handleClose} data={formData} onChange={onChange} handleFormSubmit={handleFormSubmit} />
       <AgGridReact
         rowData={tableData}
